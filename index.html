@@ -794,9 +794,10 @@ document.addEventListener('DOMContentLoaded', async function() {
       groupsWrap.dataset.realData = '1';
     }).catch(function(){});
   }
+  // [أداء] نفس مشكلة الاستدعاء المكرر المذكورة أعلاه (كانت هذي الدالة
+  // تُستدعى ٣ مرات بلا داعٍ) — استدعاء واحد كافٍ؛ الحارس
+  // (groupsWrap.dataset.realData) يمنع أي ازدواجية لو تكرر فعلاً.
   setTimeout(loadRealPartners, 700);
-  setTimeout(loadRealPartners, 1500);
-  setTimeout(loadRealPartners, 3000);
 
   function applyResponsiveFixes(){
     // [أداء حرج] هذي الحركات الزخرفية بالخلفية (مدارات ضبابية، nl-aurora،
